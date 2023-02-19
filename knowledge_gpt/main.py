@@ -17,7 +17,7 @@ def clear_submit():
     st.session_state["submit"] = False
 
 
-st.header("📖KnowledgeGPT")
+st.header("📖KnowledgeJeePeeTee")
 
 sidebar()
 
