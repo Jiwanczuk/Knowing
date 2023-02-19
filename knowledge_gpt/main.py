@@ -14,8 +14,7 @@ from utils import (
 )
 
 # Set up OpenAI API client
-openai.api_key = st.secrets["openai_api_key"]
-
+st.write("OPENAI_API_KEY:", st.secrets["OPENAI_API_KEY"])
 
 def clear_submit():
     st.session_state["submit"] = False
