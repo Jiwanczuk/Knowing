@@ -17,7 +17,7 @@ from prompts import STUFF_PROMPT
 from pypdf import PdfReader
 
 
-@st.cache_data
+@st.cache_resource
 def parse_docx(file: BytesIO) -> str:
     text = docx2txt.process(file)
     # Remove multiple newlines
@@ -25,7 +25,7 @@ def parse_docx(file: BytesIO) -> str:
     return text
 
 
-@st.cache_data
+@st.cache_resource
 def parse_pdf(file: BytesIO) -> List[str]:
     pdf = PdfReader(file)
     output = []
@@ -43,7 +43,7 @@ def parse_pdf(file: BytesIO) -> List[str]:
     return output
 
 
-@st.cache_data
+@st.cache_resource
 def parse_txt(file: BytesIO) -> str:
     text = file.read().decode("utf-8")
     # Remove multiple newlines
@@ -51,7 +51,7 @@ def parse_txt(file: BytesIO) -> str:
     return text
 
 
-@st.cache_data
+@st.cache_resource
 def text_to_docs(text: str | List[str]) -> List[Document]:
     """Converts a string or list of strings to a list of Documents
     with metadata."""
@@ -84,7 +84,7 @@ def text_to_docs(text: str | List[str]) -> List[Document]:
     return doc_chunks
 
 
-
+@st.cache_resource
 def embed_docs(docs: List[Document]) -> VectorStore:
     """Embeds a list of Documents and returns a FAISS index"""
 
@@ -100,7 +100,7 @@ def embed_docs(docs: List[Document]) -> VectorStore:
         return index
 
 
-@st.cache_data
+@st.cache_resource
 def search_docs(index: VectorStore, query: str) -> List[Document]:
     """Searches a FAISS index for similar chunks to the query
     and returns a list of Documents."""
