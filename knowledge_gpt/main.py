@@ -13,6 +13,9 @@ from utils import (
     wrap_text_in_html,
 )
 
+# Set up OpenAI API client
+openai.api_key = st.secrets["openai_api_key"]
+
 
 def clear_submit():
     st.session_state["submit"] = False
